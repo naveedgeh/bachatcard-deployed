@@ -265,7 +265,7 @@ exports.getAllNotifications = async (req, res, next) => {
     let notifications = await Notification.find({
       userId: mongoose.Types.ObjectId(req.params.id),
     });
-    console.log(notifications, req.params.id);
+   
     if (notifications) {
       return res.status(200).json({
         success: true,
@@ -999,7 +999,7 @@ exports.forgetPassword = async (req, res, next) => {
     const email = req.body.email;
     const user = await User.findOne({ username: email });
     const userId = user.id;
-    console.log(userId);
+   
     if (!user) {
       return res.status(403).json({
         success: false,
@@ -1081,7 +1081,7 @@ exports.VerifyJWTToken = async (req, res, next) => {
 };
 
 exports.resetPassword = async (req, res, next) => {
-  console.log(req.body);
+  
   try {
     const token = req.body.token;
     const newPassword = req.body.password;
@@ -1133,7 +1133,7 @@ exports.getRefferalUser = async (req, res, next) => {
     children: firstchildren,
   };
   async function getChildren(parentId) {
-    console.log(parentId);
+   
     const children = await ReferralUser.find({
       parent: parentId,
     }).populate("user");
@@ -1322,7 +1322,7 @@ exports.countActiveAndInactiveUsers = async (req, res) => {
     const firstLevelUsers = await ReferralUser.find({
       parent: rootUser._id,
     }).populate("user");
-    console.log(firstLevelUsers);
+    
     if (firstLevelUsers.length === 0) {
       return res.status(200).json({ message: "No referrals found" });
     }
