@@ -62,12 +62,12 @@ exports.userSignup = async (req, res, next) => {
       if (!parentUser) {
         throw new Error("Invalid referral ID. Parent user not found.");
       }
-      parentCount = await ReferralUser.countDocuments({
-        parent: parentUser._id,
-      });
-      if (parentCount > 4) {
-        throw new Error("Your Referral Limit is complete this id.");
-      }
+      // parentCount = await ReferralUser.countDocuments({
+      //   parent: parentUser._id,
+      // });
+      // if (parentCount > 4) {
+      //   throw new Error("Your Referral Limit is complete this id.");
+      // }
     }
 
     let userInfoEmail = await User.findOne({ username: req.body.email });
